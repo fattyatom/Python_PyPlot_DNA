@@ -1,4 +1,4 @@
-import gzip
+from uniplot.cli import cli
 
-for l in gzip.open("uniprot_receptor.xml.gz"):
-    print(l.decode().strip())
+if __name__ == '__main__':
+    cli()
