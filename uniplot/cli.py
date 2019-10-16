@@ -1,16 +1,20 @@
 import argparse
-import gzip
-from Bio import SeqIO
+from . import parse
+from . import analysis
+
+LOC="uniprot_receptor.xml.gz"
 
 def dump(args):
-    handle = gzip.open("uniprot_receptor.xml.gz")
-    for record in SeqIO.parse(handle, "uniprot-xml"):
+    for record in parse.uniprot_seqrecords(LOC):
         print(record)
 
 def names(args):
-    handle = gzip.open("uniprot_receptor.xml.gz")
-    for record in SeqIO.parse(handle, "uniprot-xml"):
+    for record in parse.uniprot_seqrecords(LOC):
         print(record.name)
+
+def average(args):
+    print("Average Length is {}".format(
+        analysis.average_len(parse.uniprot_seqrecords(LOC))))
 
 def cli():
     ## Create a new parser
@@ -21,9 +25,11 @@ def cli():
     ## Add subparsers
     subparsers.add_parser("dump").set_defaults(func=dump)
     subparsers.add_parser("list").set_defaults(func=names)
+    subparsers.add_parser("average").set_defaults(func=average)
 
     ## Parse the command line
     args = parser.parse_args()
 
     ## Take the func argument, which points to our function and call it.
     args.func(args)
+

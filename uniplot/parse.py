@@ -1,5 +1,4 @@
 import gzip
-
 from Bio import SeqIO
 
 def uniprot_seqrecords(file_location):
