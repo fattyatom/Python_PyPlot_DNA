@@ -1,6 +1,7 @@
+import pytest
 import uniplot.analysis
 import uniplot.parse
-import pytest
+
 
 TEST_UNIPROT="./resources/uniprot_sprot_small.xml.gz"
 
