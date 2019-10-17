@@ -2,7 +2,7 @@ import argparse
 from . import parse
 from . import analysis
 
-LOC="uniprot_receptor.xml.gz"
+LOC="resources/uniprot_sprot_small.xml.gz"
 
 def dump(args):
     for record in parse.uniprot_seqrecords(LOC):
