@@ -21,17 +21,20 @@ def plot_average_by_taxa(args):
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC))
     plot.plot_bar_show(av)
 
+def custom_db(args):
+    LOC=fiu
+
 def cli():
     ## Create a new parser
-    parser = argparse.ArgumentParser(prog="uniplot")
+    parser = argparse.ArgumentParser(prog="uniplot", description="A python program of discovering DNA sequences")
 
     subparsers = parser.add_subparsers(help="Sub Command Help")
 
     ## Add subparsers
-    subparsers.add_parser("dump").set_defaults(func=dump)
-    subparsers.add_parser("list").set_defaults(func=names)
-    subparsers.add_parser("average").set_defaults(func=average)
-    subparsers.add_parser("plot-average-by-taxa").set_defaults(func=plot_average_by_taxa)
+    subparsers.add_parser("dump", help='Print all values in the database').set_defaults(func=dump)
+    subparsers.add_parser("list", help='Print a name list of the records').set_defaults(func=names)
+    subparsers.add_parser("average", help='Finding the average values of the name strings').set_defaults(func=average)
+    subparsers.add_parser("plot-average-by-taxa", help='Show bar chart of various types').set_defaults(func=plot_average_by_taxa)
 
     ## Parse the command line
     args = parser.parse_args()
