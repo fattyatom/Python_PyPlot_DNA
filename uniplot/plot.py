@@ -11,6 +11,6 @@ def plot_bar_show(d):
     ## Add labels to the x-axis, with the keys of d
     plt.xticks(r, d.keys())
     ## Squash everything up so there is no white space
-    #plt.tight_layout()
+    plt.tight_layout()
     ## Show the graph
     plt.show()

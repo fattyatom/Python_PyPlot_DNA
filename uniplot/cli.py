@@ -2,8 +2,12 @@ import argparse
 from . import parse
 from . import analysis
 from . import plot
+from pathlib import Path
 
-LOC="resources/uniprot_sprot_small.xml.gz"
+LOC="uniprot_receptor.xml.gz"
+
+def custom_db(args):
+    LOC=  Path('')
 
 def dump(args):
     for record in parse.uniprot_seqrecords(LOC):
@@ -21,8 +25,6 @@ def plot_average_by_taxa(args):
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC))
     plot.plot_bar_show(av)
 
-def custom_db(args):
-    LOC=fiu
 
 def cli():
     ## Create a new parser
