@@ -10,23 +10,28 @@ def custom_db(args):
     LOC=  Path('')
 
 def dump(args):
+    """Prints the records in the uniprot_seqrecords in the parse.py file."""
     for record in parse.uniprot_seqrecords(LOC):
         print(record)
 
 def names(args):
+    """Prints the names in the records in the dump of uniprot_seqrecords."""
     for record in parse.uniprot_seqrecords(LOC):
         print(record.name)
 
 def average(args):
+    """Prints the average length of proteins."""
     print("Average Length is {}".format(
         analysis.average_len(parse.uniprot_seqrecords(LOC))))
 
 def plot_average_by_taxa(args):
+    """Generates a table of various types of average protein lengths."""
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC))
     plot.plot_bar_show(av)
 
 
 def cli():
+    """Handles all the argument parsers required in the table."""
     ## Create a new parser
     parser = argparse.ArgumentParser(prog="uniplot", description="A python program of discovering DNA sequences")
 

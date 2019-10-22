@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 def plot_bar_show(d):
+    """Defines the variables in the plot generation process."""
     ## A list of numbers as long as the elements in d
     r = range(0, len(d))
     ## Prepare a figure
