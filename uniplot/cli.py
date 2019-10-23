@@ -1,13 +1,13 @@
-import argparse
+import argparse, ospath
 from . import parse
 from . import analysis
 from . import plot
 from pathlib import Path
 
-LOC="uniprot_receptor.xml.gz"
+LOC='uniprot_receptor.xml.gz'
 
-def custom_db(args):
-    LOC=  Path('')
+def LOC(value = 'uniprot_receptor.xml.gz'):
+    LOC=args.filename
 
 def dump(args):
     """Prints the records in the uniprot_seqrecords in the parse.py file."""
@@ -29,7 +29,6 @@ def plot_average_by_taxa(args):
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(LOC))
     plot.plot_bar_show(av)
 
-
 def cli():
     """Handles all the argument parsers required in the table."""
     ## Create a new parser
@@ -42,7 +41,8 @@ def cli():
     subparsers.add_parser("list", help='Print a name list of the records').set_defaults(func=names)
     subparsers.add_parser("average", help='Finding the average values of the name strings').set_defaults(func=average)
     subparsers.add_parser("plot-average-by-taxa", help='Show bar chart of various types').set_defaults(func=plot_average_by_taxa)
-
+    subparsers.add_parser("custom_source", help='Input the custom file path to the xml file')
+    LOC = args.custom_source
     ## Parse the command line
     args = parser.parse_args()
 
