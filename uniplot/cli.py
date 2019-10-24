@@ -1,13 +1,9 @@
-import argparse, ospath
+import argparse, pathlib
 from . import parse
 from . import analysis
 from . import plot
-from pathlib import Path
 
 LOC='uniprot_receptor.xml.gz'
-
-def LOC(value = 'uniprot_receptor.xml.gz'):
-    LOC=args.filename
 
 def dump(args):
     """Prints the records in the uniprot_seqrecords in the parse.py file."""
@@ -34,6 +30,8 @@ def cli():
     ## Create a new parser
     parser = argparse.ArgumentParser(prog="uniplot", description="A python program of discovering DNA sequences")
 
+    parser.add_argument("custom_source", help='Input the custom file path to the xml file', type=argparse.FileType('r'))
+
     subparsers = parser.add_subparsers(help="Sub Command Help")
 
     ## Add subparsers
@@ -41,10 +39,11 @@ def cli():
     subparsers.add_parser("list", help='Print a name list of the records').set_defaults(func=names)
     subparsers.add_parser("average", help='Finding the average values of the name strings').set_defaults(func=average)
     subparsers.add_parser("plot-average-by-taxa", help='Show bar chart of various types').set_defaults(func=plot_average_by_taxa)
-    subparsers.add_parser("custom_source", help='Input the custom file path to the xml file')
-    LOC = args.custom_source
+
     ## Parse the command line
     args = parser.parse_args()
+
+    LOC = args.custom_source
 
     ## Take the func argument, which points to our function and call it.
     args.func(args)
