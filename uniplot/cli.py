@@ -30,10 +30,6 @@ def cli():
     ## Create a new parser
     parser = argparse.ArgumentParser(prog="uniplot", description="A python program of discovering DNA sequences")
 
-    parser.add_argument("custom_source", help='Input the custom file path to the xml file', type=argparse.FileType('r'))
-
-    subparsers = parser.add_subparsers(help="Sub Command Help")
-
     ## Add subparsers
     subparsers.add_parser("dump", help='Print all values in the database').set_defaults(func=dump)
     subparsers.add_parser("list", help='Print a name list of the records').set_defaults(func=names)
@@ -43,7 +39,6 @@ def cli():
     ## Parse the command line
     args = parser.parse_args()
 
-    LOC = args.custom_source
 
     ## Take the func argument, which points to our function and call it.
     args.func(args)
