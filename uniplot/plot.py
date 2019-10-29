@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 def plot_bar_show(d):
-    """Defines the variables in the bar chart generation process."""
+    """Defines the variables in the plot generation process."""
     ## A list of numbers as long as the elements in d
     r = range(0, len(d))
     ## Prepare a figure
@@ -17,7 +17,7 @@ def plot_bar_show(d):
     plt.show()
 
 def plot_pie_show(d):
-    """Defines the variables in the pie chart generation process."""
+    """Defines the variables in the plot generation process."""
     ## A list of numbers as long as the elements in d
     ## Prepare a figure
     sizes = d.values()
@@ -25,6 +25,7 @@ def plot_pie_show(d):
 
     pieplot, axes= plt.subplots()
 
-    axes.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    axes.pie(sizes, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
     axes.axis('equal')
     plt.show()
