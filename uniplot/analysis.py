@@ -5,11 +5,14 @@ def average_len(records):
         total_length += len(record)
     return total_length / len(records)
 
-def average_len_taxa(records):
+def average_len_taxa(records, depth):
     """Returns the average length for the top level taxa"""
     record_by_taxa = {}
     for r in records:
-        taxa = r.annotations["taxonomy"][0]
-        record_by_taxa.setdefault(taxa, []).append(r)
+        try:
+            taxa = r.annotations["taxonomy"][depth]
+            record_by_taxa.setdefault(taxa, []).append(r)
+        except IndexError:
+            pass
 
     return {taxa:average_len(record) for (taxa, record) in record_by_taxa.items()}
