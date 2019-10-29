@@ -6,4 +6,4 @@ This package allows analysis and display of proteins from Uniprot, including dis
 \
 Parser arguments are available for different functions of programs to run, including:\
 `average` - shows average value of virus protein lengths\
-`plot-average-by-taxa` - shows the bar chart for various protein lengths
+`plot_average` - shows the bar chart for various protein lengths
