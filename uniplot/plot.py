@@ -16,3 +16,16 @@ def plot_bar_show(d):
     ## Show the graph
     plt.show()
 
+def plot_pie_show(d):
+    """Defines the variables in the plot generation process."""
+    ## A list of numbers as long as the elements in d
+    ## Prepare a figure
+    sizes = d.values()
+    labels = d.keys()
+
+    pieplot, axes= plt.subplots()
+
+    axes.pie(sizes, labels=labels, autopct='%1.1f%%',
+            shadow=True, startangle=90)
+    axes.axis('equal')
+    plt.show()

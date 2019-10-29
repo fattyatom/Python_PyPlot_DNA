@@ -21,7 +21,10 @@ def average(args):
 def plot_average_by_taxa(args):
     """Generates a table of various types of average protein lengths."""
     av = analysis.average_len_taxa(parse.uniprot_seqrecords(args.customfile), args.depth)
-    plot.plot_bar_show(av)
+    if args.pie:
+        plot.plot_pie_show(av)
+    else:
+        plot.plot_bar_show(av)
 
 
 def cli():
@@ -31,6 +34,7 @@ def cli():
 
     parser.add_argument('--customfile',  default='uniprot_receptor.xml.gz', action='store', help='Type custom protein DB file path at prompt for custom UniProt file')
     parser.add_argument('--depth', action='store', type=int, default='0', help='Input value for levels of taxa being plotted')
+    parser.add_argument('--pie', action='store_true', help='Displays a pie chart rather then a bar chart')
 
     subparsers = parser.add_subparsers(help="Sub Commands Help")
 
@@ -45,5 +49,3 @@ def cli():
 
     ## Take the func argument, which points to our function and call it.
     args.func(args)
-
-    #analysis.average_len_taxa.depth = args.depth
