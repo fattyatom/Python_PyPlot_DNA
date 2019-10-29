@@ -4,7 +4,7 @@ def average_len(records):
     total_length = 0
     for record in records:
         total_length += record["sequence_length"]
-        total_length += len(record)
+        #total_length += len(record)
     return total_length / len(records)
 
 def average_len_taxa(records, depth):
